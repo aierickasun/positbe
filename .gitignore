@@ -5,3 +5,4 @@ prices/__pycache__
 prices/migrations/__pycache__
 trxs/__pycache__
 trxs/migrations/__pycache
+positbe/settings.py

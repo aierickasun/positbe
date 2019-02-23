@@ -1,1 +1,5 @@
 positbe/settings.py
+#ignore pycaches
+__pycache__
+postibe/__pycache__
+prices/__pycache__

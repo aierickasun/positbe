@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'rest_framework',
     #internal apps
     'prices.apps.PricesConfig',
-    'trxs.apps.TrxsConfig',
+    'stores.apps.StoresConfig',
+    # 'trxs.apps.TrxsConfig',
 ]
 
 MIDDLEWARE = [

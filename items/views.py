@@ -1,49 +1,49 @@
 #import the model
-from prices.models import Prices
+from items.models import Items
 #import the serializer
-from prices.serializers import PricesSerializer
+from items.serializers import ItemsSerializer
 
 #import the rest_framework class/methods
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-class PricesList(APIView):
+class ItemsList(APIView):
     def get(self, request, format=None):
-        prices = Prices.objects.all()
-        serializers = PricesSerializer(prices,many=True)
+        items = Items.objects.all()
+        serializers = ItemsSerializer(items,many=True)
         return Response(serializers.data)
 
     def post(self, request, format=None):
-        serializer = PricesSerializer(data=request.data)
+        serializer = ItemsSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data,status=status.HTTP_201_CREATED)
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
-class PricesDetail(APIView):
+class ItemsDetail(APIView):
     def get_object(self, pk):
         try:
-            return Prices.objects.get(pk=pk)
-        except Prices.DoesNotExist:
+            return Items.objects.get(pk=pk)
+        except Items.DoesNotExist:
             raise Http404
 
     def get(self, request, pk, format=None):
-        price = self.get_object(pk)
-        serializer = PricesSerializer(price)
+        item = self.get_object(pk)
+        serializer = ItemsSerializer(item)
         return Response(serializer.data)
 
     def put(self, request, pk, format=None):
-        price = self.get_object(pk)
-        serializer = PricesSerializer(price, data=request.data)
+        item = self.get_object(pk)
+        serializer = ItemsSerializer(item, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, format=None):
-        price = self.get_object(pk)
-        price.delete()
+        item = self.get_object(pk)
+        item.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 # Create your views here.

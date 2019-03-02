@@ -1,12 +1,13 @@
+#import the rest_framework class/methods
+from rest_framework import status
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
 #import the model
 from stores.models import Stores
 #import the serializer
 from stores.serializers import StoresSerializer
 
-#import the rest_framework class/methods
-from rest_framework import status
-from rest_framework.views import APIView
-from rest_framework.response import Response
 
 class StoresList(APIView):
     def get(self, request, format=None):

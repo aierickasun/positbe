@@ -42,9 +42,9 @@ INSTALLED_APPS = [
     #django rest framework third part
     'rest_framework',
     #internal apps
-    'prices.apps.PricesConfig',
+    'items.apps.ItemsConfig',
     'stores.apps.StoresConfig',
-    # 'trxs.apps.TrxsConfig',
+    'trxs.apps.TrxsConfig',
 ]
 
 MIDDLEWARE = [

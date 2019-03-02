@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from prices.models import Prices
+from items.models import Items
 
 
-class PricesSerializer(serializers.ModelSerializer):
+class ItemsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Prices
+        model = Items
         fields = ('id','item_name','price','vendor','updated')

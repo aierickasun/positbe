@@ -28,7 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,11 +40,20 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #django rest framework third part
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
     #internal apps
     'items.apps.ItemsConfig',
     'stores.apps.StoresConfig',
     'trxs.apps.TrxsConfig',
+    'users.apps.UsersConfig',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES':[
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -101,6 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
 
 
 # Internationalization

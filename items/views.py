@@ -7,8 +7,10 @@ from items.serializers import ItemsSerializer
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 
 class ItemsList(APIView):
+    permission_classes = (IsAuthenticated,)
     def get(self, request, format=None):
         items = Items.objects.all()
         serializers = ItemsSerializer(items,many=True)

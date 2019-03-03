@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_auth',
     #internal apps
+    'inventories.apps.InventoriesConfig',
     'items.apps.ItemsConfig',
     'stores.apps.StoresConfig',
     'trxs.apps.TrxsConfig',
@@ -130,3 +131,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Serialization
+SERIALIZATION_MODULES = {
+    'json': 'wadofstuff.django.serializers.json'
+}

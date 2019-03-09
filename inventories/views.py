@@ -1,3 +1,4 @@
+from django.http import Http404
 from inventories.models import Inventories
 from inventories.serializers import InventoriesSerializer
 from rest_framework import status

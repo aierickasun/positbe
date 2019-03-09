@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_auth',
     #internal apps
-    'inventories.apps.InventoriesConfig',
     'items.apps.ItemsConfig',
     'stores.apps.StoresConfig',
     'trxs.apps.TrxsConfig',

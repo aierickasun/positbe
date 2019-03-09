@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'stores.apps.StoresConfig',
     'trxs.apps.TrxsConfig',
     'users.apps.UsersConfig',
+    'inventories.apps.InventoriesConfig',
 ]
 
 REST_FRAMEWORK = {

@@ -7,6 +7,6 @@ trxs/__pycache__
 trxs/migrations/__pycache__
 stores/__pycache__
 stores/migrations/__pycache__
-users/__pychache__
+users/__pycache__
 users/migrations/__pychache__
 *.pyc

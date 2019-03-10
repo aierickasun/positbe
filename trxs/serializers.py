@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from items.serializers import ItemsSerializer
 from trxs.models import Trxs, TrxsReceipt
 
 class TrxsSerializer(serializers.ModelSerializer):
@@ -6,16 +7,18 @@ class TrxsSerializer(serializers.ModelSerializer):
         model = Trxs
         fields = ('id','sale_total','store','sale_time')
 
-class TrxsReceiptSerializer(serializers.ModelSerializer):
+class TrxsReceiptReadSerializer(serializers.ModelSerializer):
+
+    items = ItemsSerializer()
     class Meta:
         model = TrxsReceipt
-        fields = ('id','quantity','items','trxs')
-        extra_kwargs = {'trxs' : {'write_only':True}}
+        fields = ('id','items','quantity','trxs')
+        # read_only_fields = ('items',)
+    # def create(self,validated_data):
+    #     print (validated_data)
+    #     return
 
-# class TrxsIndSerializer(serializers.ModelSerializer):
-#     transaction_ind = serializers.StringRelatedField(read_only = True)
-#     class Meta:
-#         model = Trxs
-#         fields = ""
-#         # fields = ('id','sale_total','store','sale_time','transaction_ind')
-#         # extra_kwargs = {'trxs' : {'write_only':True}}
+class TrxsReceiptPostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TrxsReceipt
+        fields = ('id','items','quantity','trxs')

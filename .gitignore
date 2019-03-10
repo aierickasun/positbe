@@ -1,12 +1,14 @@
 positbe/db_secrets.py
 __pycache__
 positbe/__pycache__
-prices/__pycache__
-prices/migrations/__pycache__
+items/__pycache__
+items/migrations/__pycache__
 trxs/__pycache__
 trxs/migrations/__pycache__
 stores/__pycache__
 stores/migrations/__pycache__
 users/__pycache__
-users/migrations/__pychache__
+users/migrations/__pycache__
+vendors/__pycache__
+vendors/migrations/__pycache
 *.pyc

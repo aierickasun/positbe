@@ -1,3 +1,4 @@
+from django.http import Http404
 #import the rest_framework class/methods
 from rest_framework import status
 from rest_framework.views import APIView

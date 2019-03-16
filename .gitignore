@@ -12,3 +12,4 @@ users/migrations/__pycache__
 vendors/__pycache__
 vendors/migrations/__pycache
 *.pyc
+positbe.log

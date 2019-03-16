@@ -4,9 +4,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 #import the model
-from trxs.serializers import TrxsSerializer, TrxsReceiptReadSerializer, TrxsReceiptPostSerializer
-#import the serializer
 from trxs.models import Trxs, TrxsReceipt
+
+#import the serializer
+from trxs.serializers import TrxsSerializer, TrxsReceiptReadSerializer, TrxsReceiptPostSerializer
 
 class TrxsList(APIView):
     def get(self, request, format=None):

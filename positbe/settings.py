@@ -127,7 +127,42 @@ USE_L10N = True
 
 USE_TZ = True
 
+SITE_ROOT = os.path.dirname(os.path.realpath("settings.py"))
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+    },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console':{
+            'class': 'logging.StreamHandler',
+            'level': 'DEBUG',
+            'formatter' : 'simple',
+        },
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(SITE_ROOT,'positbe.log'),
+            'formatter' : 'verbose',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file','console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 

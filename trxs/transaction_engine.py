@@ -13,7 +13,7 @@ from stores.models import Stores
 
 #import the serializers
 from inventories.serializers import InventoriesSerializer
-from trxs.serializers import TrxsSerializer, TrxsReceiptReadSerializer, TrxsReceiptPostSerializer
+from trxs.serializers import TrxsSerializer, TrxsReceiptReadSerializer, TrxsReceiptPostSerializer, TrxsEnginePostSerializer
 
 class TransactionEngine(APIView):
     #initiate a transaction_cache to store all the metadata needed for this transaction.
@@ -23,11 +23,14 @@ class TransactionEngine(APIView):
     # listen for the incoming post request
     def post(self,request,format=None):
         #create a hashmap of the incoming request post payload
-        shopping_cart_hash = request.data
         #make a copy of the incoming_request and log it.
-        self.request_cache["incoming_request"] = request.data
-        #call the master handler
-        return TransactionServiceHandler().master_engine_handler(shopping_cart_hash)
+        # determine if the incoming payload is correct
+        incoming_request_serializer = TrxsEnginePostSerializer(data = request.data)
+        if incoming_request_serializer.is_valid():
+            self.request_cache["incoming_request"] = request.data
+            return TransactionServiceHandler().master_engine_handler(self.request_cache["incoming_request"])
+        else:
+            return Response(incoming_request_serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
 class TransactionMessages:
     #create a message of this transaction that needs to happen.
@@ -233,7 +236,7 @@ class TransactionServiceHandler:
 
         if transaction_flag == "Success":
             return_response.final_response["message"] = "Success"
-            
+
         elif transaction_flag == "Failure":
             return_response.final_response["message"] = "Error"
 

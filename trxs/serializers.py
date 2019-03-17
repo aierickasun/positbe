@@ -22,3 +22,13 @@ class TrxsReceiptPostSerializer(serializers.ModelSerializer):
     class Meta:
         model = TrxsReceipt
         fields = ('id','items','quantity','trxs')
+
+class CartItemsSerializer(serializers.Serializer):
+    items_id = serializers.CharField()
+    quantity = serializers.IntegerField()
+
+class TrxsEnginePostSerializer(serializers.Serializer):
+    # sub_cart_items = CartItemsSerializer()
+    store = serializers.IntegerField()
+    #do not allow an empty cart
+    cart_items = CartItemsSerializer(many=True,allow_empty=False)

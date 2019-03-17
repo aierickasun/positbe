@@ -2,7 +2,7 @@ from django.http import Http404
 #import the model
 from items.models import Items
 #import the serializer
-from items.serializers import ItemsSerializer
+from items.serializers import ItemsSerializer, ItemsReadSerializer
 
 #import the rest_framework class/methods
 from rest_framework import status
@@ -14,7 +14,7 @@ class ItemsList(APIView):
     permission_classes = (IsAuthenticated,)
     def get(self, request, format=None):
         items = Items.objects.all()
-        serializers = ItemsSerializer(items,many=True)
+        serializers = ItemsReadSerializer(items,many=True)
         return Response(serializers.data)
 
     def post(self, request, format=None):
